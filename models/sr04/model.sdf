@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='sr04'>
+
+    <include merge='true'>
+      <uri>model://sr04_base</uri>
+    </include>
+
+    <!-- MOTOR 0 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_0_joint</jointName>
+      <linkName>rotor_0</linkName>
+      <turningDirection>ccw</turningDirection>
+
+      <!-- FAST response (large prop but responsive ESC) -->
+      <timeConstantUp>0.02</timeConstantUp>
+      <timeConstantDown>0.04</timeConstantDown>
+
+      <!-- Realistic RPM (~2800 rpm ≈ 293 rad/s) -->
+      <maxRotVelocity>1000</maxRotVelocity>
+
+      <!-- CRITICAL: thrust generation -->
+      <motorConstant>4.9e-5</motorConstant>
+
+      <!-- yaw torque -->
+      <momentConstant>0.6</momentConstant>
+
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+
+      <rotorDragCoefficient>8e-5</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-6</rollingMomentCoefficient>
+
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <!-- MOTOR 1 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_1_joint</jointName>
+      <linkName>rotor_1</linkName>
+
+      <!-- FIXED: correct direction -->
+      <turningDirection>ccw</turningDirection>
+
+      <!-- Faster, realistic response -->
+      <timeConstantUp>0.02</timeConstantUp>
+      <timeConstantDown>0.04</timeConstantDown>
+
+      <!-- ~2800 RPM -->
+      <maxRotVelocity>1000</maxRotVelocity>
+
+      <!-- Increased thrust capability -->
+      <motorConstant>4.9e-5</motorConstant>
+
+      <!-- Better yaw control -->
+      <momentConstant>0.6</momentConstant>
+
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+
+      <!-- Increased aerodynamic effects -->
+      <rotorDragCoefficient>8e-5</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-6</rollingMomentCoefficient>
+
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <!-- MOTOR 2 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_2_joint</jointName>
+      <linkName>rotor_2</linkName>
+
+      <!-- FIXED: correct direction -->
+      <turningDirection>cw</turningDirection>
+
+      <!-- Faster motor response -->
+      <timeConstantUp>0.02</timeConstantUp>
+      <timeConstantDown>0.04</timeConstantDown>
+
+      <!-- ~2800 RPM -->
+      <maxRotVelocity>1000</maxRotVelocity>
+
+      <!-- Increased thrust capability -->
+      <motorConstant>4.9e-5</motorConstant>
+
+      <!-- Better yaw authority -->
+      <momentConstant>0.6</momentConstant>
+
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+
+      <!-- Aerodynamic effects -->
+      <rotorDragCoefficient>8e-5</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-6</rollingMomentCoefficient>
+
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <!-- MOTOR 3 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+        name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_3_joint</jointName>
+      <linkName>rotor_3</linkName>
+
+      <!-- Direction is correct -->
+      <turningDirection>cw</turningDirection>
+
+      <!-- Faster response -->
+      <timeConstantUp>0.02</timeConstantUp>
+      <timeConstantDown>0.04</timeConstantDown>
+
+      <!-- ~2800 RPM -->
+      <maxRotVelocity>1000</maxRotVelocity>
+
+      <!-- Stronger thrust -->
+      <motorConstant>4.9e-5</motorConstant>
+
+      <!-- Better yaw torque -->
+      <momentConstant>0.6</momentConstant>
+
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+
+      <!-- Aerodynamics -->
+      <rotorDragCoefficient>8e-5</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-6</rollingMomentCoefficient>
+
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+  </model>
+</sdf>
